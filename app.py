@@ -2,72 +2,58 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# 피크민 데이터베이스 (사진 주소와 설명을 저장)
-# 실제 피크민 이미지 URL이 있다면 여기에 교체해서 넣으시면 됩니다.
+# 피크민 데이터베이스
 pikmin_db = {
     "빨강": {
-        "title": "❤️ 빨강 피크민 (Red Pikmin)",
-        "description": "불에 강하고 공격력이 아주 높아요!\n코가 뾰족한 게 특징이죠.",
-        "image": "https://raw.githubusercontent.com/olivia-pikmin/pikmin-bot/main/images/red_pikmin.png" # 예시 이미지 주소
+        "title": "❤️ 빨강 피크민",
+        "description": "불에 강하고 공격력이 높아요!",
+        "image": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/red.png" 
     },
     "바위": {
-        "title": "💎 바위 피크민 (Rock Pikmin)",
-        "description": "단단해서 밟혀도 끄떡없고,\n유리나 벽을 부수기에 딱이에요!",
-        "image": "https://raw.githubusercontent.com/olivia-pikmin/pikmin-bot/main/images/rock_pikmin.png" # 예시 이미지 주소
-    },
-    "보라": {
-        "title": "💜 보라 피크민 (Purple Pikmin)",
-        "description": "일반 피크민 10마리의 힘을 가진 천하장사예요!\n아주 듬직하답니다.",
-        "image": "https://raw.githubusercontent.com/olivia-pikmin/pikmin-bot/main/images/purple_pikmin.png" # 예시 이미지 주소
-    },
-    # 필요한 피크민을 더 추가할 수 있습니다.
+        "title": "💎 바위 피크민",
+        "description": "단단해서 뭐든 부술 수 있어요!",
+        "image": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/rock.png"
+    }
 }
 
 @app.route('/keyboard', methods=['POST'])
 def keyboard():
     data = request.get_json()
-    user_message = data['userRequest']['utterance'].replace(" ", "") # 공백 제거
+    user_message = data['userRequest']['utterance'].replace(" ", "")
 
-    # 사용자가 입력한 단어에 피크민 이름이 포함되어 있는지 확인
-    found_pikmin = None
-    for name in pikmin_db:
-        if name in user_message:
-            found_pikmin = pikmin_db[name]
-            break
+    response_body = {"version": "2.0", "template": {"outputs": []}}
 
-    # 응답 바디 초기화
-    response_body = {
-        "version": "2.0",
-        "template": {
-            "outputs": []
-        }
-    }
-
-    if found_pikmin:
-        # 1. 피크민을 찾았을 때: 사진 카드로 응답 (BasicCard)
+    # 웰컴 인사 (사용자가 처음 들어오거나 '안녕', '시작'이라고 할 때)
+    if user_message in ["시작", "안녕", "반가워", "누구니"]:
         response_body["template"]["outputs"].append({
             "basicCard": {
-                "title": found_pikmin["title"],
-                "description": found_pikmin["description"],
+                "title": "🌱 피크민 도감에 오신 걸 환영해요!",
+                "description": "궁금한 피크민의 이름을 입력해보세요.\n(예: 빨강 피크민, 바위 피크민)",
                 "thumbnail": {
-                    "imageUrl": found_pikmin["image"]
-                },
-                "buttons": [
-                    {
-                        "action": "message",
-                        "label": "다른 피크민 보기",
-                        "messageText": "피크민 종류 알려줘"
-                    }
-                ]
+                    "imageUrl": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/welcome.png" # 환영 이미지
+                }
             }
         })
+    # 피크민 찾기
     else:
-        # 2. 피크민을 못 찾았을 때: 텍스트로 안내
-        response_body["template"]["outputs"].append({
-            "simpleText": {
-                "text": f"'{user_message}'라는 피크민은 아직 도감에 없어요! 😢\n'빨강', '바위', '보라' 피크민의 이름을 불러주세요."
-            }
-        })
+        found = None
+        for name in pikmin_db:
+            if name in user_message:
+                found = pikmin_db[name]
+                break
+        
+        if found:
+            response_body["template"]["outputs"].append({
+                "basicCard": {
+                    "title": found["title"],
+                    "description": found["description"],
+                    "thumbnail": {"imageUrl": found["image"]}
+                }
+            })
+        else:
+            response_body["template"]["outputs"].append({
+                "simpleText": {"text": "아직 그 피크민은 공부 중이에요! '빨강'이나 '바위'를 입력해보세요."}
+            })
 
     return jsonify(response_body)
 
