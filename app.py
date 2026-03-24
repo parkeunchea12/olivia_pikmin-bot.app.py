@@ -7,12 +7,12 @@ pikmin_db = {
     "빨강": {
         "title": "❤️ 빨강 피크민",
         "description": "불에 강하고 공격력이 높아요!",
-        "image": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/red.png" 
+        "image": "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FndyKmzgEhIJHWB_b-vz3JECuRhWTlZkOC7OFsjVoiGr3IvncXJKf6a-V_NOB43CaOBD3a_Y08imSUrjteC1w4w.webp&type=a340" 
     },
     "바위": {
         "title": "💎 바위 피크민",
         "description": "단단해서 뭐든 부술 수 있어요!",
-        "image": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/rock.png"
+        "image": "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAzMDdfMjI3%2FMDAxNzQxMjczMjAyNTA1.sC-FYz_46GFf0O2oWvK6A31dxWMjzecwkNhIIra7k8og.2y9nmUqSjhFjrauyzpZKDfNTl5vfc9HCMTp_Xd1VGosg.JPEG%2FIMG_1455.jpg&type=a340"
     }
 }
 
