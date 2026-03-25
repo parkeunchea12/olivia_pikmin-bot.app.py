@@ -76,7 +76,7 @@ def keyboard():
                 "title": "🌱 피크민 도감에 오신 걸 환영해요!",
                 "description": "아래 버튼을 누르거나 궁금한 피크민을 입력해보세요.",
                 "thumbnail": {
-                    "imageUrl": "https://raw.githubusercontent.com/parkeunchea12/olivia_pikmin-bot.app.py/main/welcome.png"
+                    "imageUrl": "https://github.com/parkeunchea12/olivia_pikmin-bot.app.py/blob/main/ehrka.jpeg?raw=true"
                 }
             }
         })
