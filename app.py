@@ -7,8 +7,7 @@ pikmin_db = {
     "빨강": {
         "title": "❤️ 빨강 피크민",
         "description": "불에 강하고 공격력이 높아요!",
-        "image": "https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FndyKmzgEhIJHWB_b-vz3JECuRhWTlZkOC7OFsjVoiGr3IvncXJKf6a-V_NOB43CaOBD3a_Y08imSUrjteC1w4w.webp&type=a340" 
-    },
+        "image": " https://github.com/parkeunchea12/olivia_pikmin-bot.app.py/blob/main/red.jpeg?raw=true"
     "노랑": {
         "title": "💛 노랑 피크민",
         "description": "전기에 강하고 아주 높이 던질 수 있어요!",
